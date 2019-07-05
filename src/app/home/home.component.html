@@ -1,0 +1,14 @@
+<div class="row" style="text-align:center" *ngIf="allBlogs.length>0">
+  <div *ngFor="let blog of allBlogs" class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">{{blog.title | uppercase}}</div>
+      <div class="panel-body">
+        <p>{{blog.description}}</p>
+      </div>
+      <div class="panel-footer">
+        <p>Posted by {{blog.author}} on {{blog.created |date}}</p>
+        <a class="btn btn-primary" [routerLink]="['/blog',blog.blogId]">Read</a>
+      </div>
+    </div>
+  </div>
+</div>
