@@ -1,3 +1,31 @@
-<p>
-  blog-edit works!
-</p>
+<div class="row" style="text-align:left">
+    <div class="col-md-12">
+      <form #editBlogForm="ngForm" (ngSubmit)="editThisBlog()">
+        <div class="form-group">
+          <label>Blog Title</label>
+          <input type="text" name="blogTitle" [(ngModel)]="currentBlog.title" required #title="ngModel" class="form-control">
+        </div>
+        <div [hidden]="title.valid||title.pristine" class="alert alert-danger">
+          Blog title is required
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" name="blogDescription" [(ngModel)]="currentBlog.description" required #description="ngModel"  class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Enter Blog Body</label>
+          <textarea name="blogBodyHtml" [(ngModel)]="currentBlog.bodyHtml" required #blogBody="ngModel"  class="form-control" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select name="blogCategory" [(ngModel)]="currentBlog.category" required #category="ngModel"  class="form-control">
+            <option *ngFor="let category of possibleCategories" [value]="category">{{category}}</option>
+          </select>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary" [disabled]="!editBlogForm.form.valid">Edit the blog</button>
+          <button type="button" class="btn btn-primary" (click)="cancelEditBlogForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>

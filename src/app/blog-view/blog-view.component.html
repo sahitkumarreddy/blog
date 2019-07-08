@@ -3,6 +3,9 @@
     <div class="col-md-12">
       <h2>{{currentBlog.title}}</h2>
       <p>Posted by {{currentBlog.author}} on {{currentBlog.created |date}}</p>
+      <p>{{currentBlog.description}}</p>
+      <p>{{currentBlog.bodyHtml}}</p>
+      <p>Category:{{currentBlog.category}}</p>
       <p *ngIf="currentBlog.tags.length!=undefined && currentBlog.tags.length>0">
         tags:
         <span *ngFor="let tag of currentBlog.tags;let first=first;let last=last">{{tag}}{{last? " ":", "}}</span>
@@ -15,10 +18,10 @@
       <a class="btn btn-primary" [routerLink]="['/edit',currentBlog.blogId]">Edit</a>
     </div>
     <div class="col-md-4">
-      <a class="btn btn-danger">Delete</a>
+      <a class="btn btn-danger" (click)="deleteThisBlog()">Delete</a>
     </div>
     <div class="col-md-4">
-      <a class="btn btn-warning">Go Back</a>
+      <a class="btn btn-warning" (click)="goBackToPreviousPage()">Go Back</a>
     </div>
 
   </div>
